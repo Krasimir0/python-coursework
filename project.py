@@ -41,22 +41,44 @@ def findMode(marks):
         
                 
 
-print("Enter student marks one at a time. Type 'end' when you want to stop the program or if you want to start again type back.")
+print("Enter student marks one at a time. Type 'exit' when you want to stop the program or if you want to start again type back.")
+
+user_input_marks = []
 
 while True:
-    user_input =  input("Enter marks or type 'end': ")
-    if user_input.lower() == 'end':
-            break
-    if user_input.lower() == 'back':
-            continue
-    user_input_marks = list(map(float, user_input.split(',')))
-    if len(user_input_marks) < 2:
-                print("Please enter at least two numbers before proceeding.")
-                continue
-    mean = findMean(user_input_marks)
-    median = findMedian(user_input_marks)
-    mode = findMode(user_input_marks)
-    print(mean)
-    print(median)
-    print(mode)
+        
+        if len(user_input_marks) == 0:
+                user_input =  input("Enter marks: ")
+                user_input_marks = list(map(float, user_input.split(',')))
+                
+                if len(user_input_marks) < 2:
+                        print("Please enter at least two numbers before proceeding.")
+                        continue
 
+                print(f"You have entered {len(user_input_marks)} marks.")
+
+        print("\nChoose an option:")
+        print("1. Print mean")
+        print("2. Print median")
+        print("3. Print mode")
+        print("4. Enter a new set of marks")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+                mean = findMean(user_input_marks)
+                print(mean)
+                continue
+        if choice == "2":
+                median = findMedian(user_input_marks)
+                print(median)
+                continue
+        if choice == "3":
+                mode = findMode(user_input_marks)
+                print(mode)
+                continue
+        if choice == "4":
+                user_input_marks = []
+                continue
+        if choice == "5":
+                break
