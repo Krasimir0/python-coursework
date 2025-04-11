@@ -25,4 +25,16 @@ def findMedian(marks):
 
 print("Enter student marks one at a time. Type 'end' when you want to stop the program or if you want to start again type back.")
 
+while True:
+    user_input =  input("Enter marks or type 'end': ")
+    if user_input.lower() == 'end':
+            break
+    if user_input.lower() == 'back':
+            continue
+    user_input_marks = list(map(float, user_input.split(',')))
+    if len(user_input_marks) < 2:
+                print("Please enter at least two numbers before proceeding.")
+                continue
+    mean = findMean(user_input_marks)
+    median = findMedian(user_input_marks)
 
