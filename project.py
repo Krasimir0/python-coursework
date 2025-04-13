@@ -41,21 +41,27 @@ def findMode(marks):
         
                 
 
-print("Enter student marks one at a time. Type 'exit' when you want to stop the program or if you want to start again type back.")
+print("Enter student marks one at a time. Type 'exit' when you want to stop the program")
 
 user_input_marks = []
 
 while True:
-        
-        if len(user_input_marks) == 0:
-                user_input =  input("Enter marks: ")
-                user_input_marks = list(map(float, user_input.split(',')))
-                
-                if len(user_input_marks) < 2:
-                        print("Please enter at least two numbers before proceeding.")
-                        continue
+        if len(user_input_marks) == 0 or len(user_input_marks) == 1: 
+            if len(user_input_marks) == 1:
+                   user_input_marks = []
+            while True:
+                        mark = input("Enter mark: ")
+                        if mark == "done":
+                                break
+                        decimal_mark = float(mark)
+                        user_input_marks.append(decimal_mark)
+            print(f"You have entered {len(user_input_marks)} marks.")
 
-                print(f"You have entered {len(user_input_marks)} marks.")
+                
+                
+        if len(user_input_marks) < 2:
+              print("Please enter at least two numbers before proceeding.")
+              continue
 
         print("\nChoose an option:")
         print("1. Print mean")
