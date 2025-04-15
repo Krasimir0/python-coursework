@@ -42,6 +42,30 @@ def findMode(marks):
         else:
                 return modes                          # Return list of modes (if multiple)
 
+# Function to calculate skewness of the data (asymmetry of distribution)
+def findSkewness(mean, numbers):
+       distance_of_each_point = []                    # Store squared distances from mean
+       points_sum = 0
+       cubed_scores_sum = 0
+
+       for number in numbers:
+             square_distance = (number - mean) ** 2   # Calculate square of difference from mean
+             distance_of_each_point.append(square_distance)
+
+       for point in distance_of_each_point:
+              points_sum += point                     # Sum of squared distances
+       
+       population = points_sum / len(distance_of_each_point)  # Variance
+       deviation = population ** 0.5                  # Standard deviation
+
+       # Calculate cubed z-scores for each number
+       cubed_z_scores = [((number - mean) / deviation) ** 3 for number in numbers]
+
+       for cubed_score in cubed_z_scores:
+              cubed_scores_sum += cubed_score         # Sum of cubed z-scores
+
+       skewness = cubed_scores_sum / len(numbers)     # Final skewness value
+       return skewness
 
 # Introduction message
 print("Enter student marks one at a time. Type 'exit' when you want to stop the program")
