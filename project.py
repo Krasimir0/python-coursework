@@ -69,13 +69,14 @@ def findSkewness(mean, numbers):
 
 def calculateFile(filename):
         try:
-            with open(filename, "r") as file:
-                content = file.read()
-                numbers = [float(num.strip()) for num in content.split(",")]
-                user_input_marks.extend(numbers)
-                print(user_input_marks)
+            with open(filename, "r") as file:                 # Open the file in read mode
+                content = file.read()                         # Read the content
+                numbers = [float(num.strip()) for num in content.split(",")]  # Convert to float list
+                user_input_marks.extend(numbers)              # Add to main list
+                print(user_input_marks)                       # Print the updated list
         except Exception as e:
-            print("Error reading file:", e)
+            print("Error reading file:", e)                   # Handle any errors
+
 
 # Introduction message
 print("Enter student marks one at a time. Type 'exit' when you want to stop the program")
@@ -132,28 +133,28 @@ while True:
 
         # Handle each menu option
         if choice == "1":
-                mean = findMean(user_input_marks)
+                mean = findMean(user_input_marks) # Calculate mean
                 print(mean)
                 continue
         if choice == "2":
-                median = findMedian(user_input_marks)
+                median = findMedian(user_input_marks) # Calculate median
                 print(median)
                 continue
         if choice == "3":
-                mode = findMode(user_input_marks)
+                mode = findMode(user_input_marks) # Calculate mode
                 print(mode)
                 continue
         if choice == "4":
                 user_input_marks = []  # Reset the data
                 continue
         if choice == "5":
-                mean = findMean(user_input_marks)
-                skewness = findSkewness(mean, user_input_marks)
+                mean = findMean(user_input_marks)  # Calculate mean
+                skewness = findSkewness(mean, user_input_marks) # Calculate skewness
                 print(skewness)
         if choice == "6":
                 continue  # Continue lets the user add more numbers
         if choice == "8":
                 break     # Exit the program
         if choice == "7":
-                filename = input("Enter file name: ")
-                calculateFile(filename)
+                 filename = input("Enter file name: ")  # Ask user for file name
+                 calculateFile(filename)                # Load data from file
