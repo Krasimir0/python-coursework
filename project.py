@@ -67,6 +67,16 @@ def findSkewness(mean, numbers):
        skewness = cubed_scores_sum / len(numbers)     # Final skewness value
        return skewness
 
+def calculateFile(filename):
+        try:
+            with open(filename, "r") as file:
+                content = file.read()
+                numbers = [float(num.strip()) for num in content.split(",")]
+                user_input_marks.extend(numbers)
+                print(user_input_marks)
+        except Exception as e:
+            print("Error reading file:", e)
+
 # Introduction message
 print("Enter student marks one at a time. Type 'exit' when you want to stop the program")
 
@@ -115,7 +125,8 @@ while True:
         print("4. Enter a new set of marks")
         print("5. Print skewness")
         print("6. Add more numbers")
-        print("7. Exit")
+        print("7. Get numbers from file")
+        print("8. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -141,5 +152,8 @@ while True:
                 print(skewness)
         if choice == "6":
                 continue  # Continue lets the user add more numbers
-        if choice == "7":
+        if choice == "8":
                 break     # Exit the program
+        if choice == "7":
+                filename = input("Enter file name: ")
+                calculateFile(filename)
